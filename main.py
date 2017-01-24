@@ -46,6 +46,7 @@ class Index(webapp2.RequestHandler):
         </form>
         """
 
+<<<<<<< HEAD
         # TODO 1
         # Include another form so the user can "cross off" a movie from their list.
         remove_form = """
@@ -91,6 +92,15 @@ class AddMovie(webapp2.RequestHandler):
         content = page_header + "<p>" + sentence + "</p>" + back + page_footer
         self.response.write(content)
 
+=======
+    def get(self):
+        # choose a movie by invoking our new function
+        movie = self.getRandomMovie()
+
+        # build the response string
+        content = "<h1>Movie of the Day</h1>"
+        content += "<p>" + movie + "</p>"
+>>>>>>> ee0680d4f01c596f269cb7115563342042b763bd
 
 # TODO 2
 # Create a new RequestHandler class called CrossOffMovie, to receive and
@@ -105,7 +115,10 @@ class CrossOffMovie(webapp2.RequestHandler):
                   " has been removed from your Watchlist!</p>" + back + page_footer
 
         self.response.write(content)
+<<<<<<< HEAD
         movie_list.remove(old_movie)
+=======
+>>>>>>> ee0680d4f01c596f269cb7115563342042b763bd
 
 # TODO 3
 # Include a route for your cross-off handler, by adding another tuple to the list below.
