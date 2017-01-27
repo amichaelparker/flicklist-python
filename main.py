@@ -104,14 +104,14 @@ class AddMovie(webapp2.RequestHandler):
         # TODO 2
         # if the user typed nothing at all, redirect and yell at them
         if not new_movie:
-            error = "Please enter a movie name."
+            error = "Please enter the name of the movie you wish to add."
             self.redirect('/?error=' + error)
 
         # TODO 3
         # if the user wants to add a terrible movie, redirect and yell at them
         for movie in terrible_movies:
             if new_movie.lower().find(movie.lower()) != -1:
-                error = "Please enter a good movie."
+                error = "Find something else to watch. Please."
                 self.redirect('/?error=' + error)
 
         # TODO 1
