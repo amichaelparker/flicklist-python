@@ -23,6 +23,9 @@ class Movie(db.Model):
     watched = db.BooleanProperty(required = True, default = False)
     rating = db.StringProperty()
 
+    def valid_rating(self, rating):
+        valid_ratings = ['*', '**', '***', '****', '*****']
+        return rating in valid_ratings
 
 def getUnwatchedMovies():
     """ Returns the list of movies the user wants to watch (but hasnt yet) """
@@ -144,7 +147,7 @@ class MovieRatings(Handler):
         # retreive the movie entity whose id is movie_id
         movie = Movie.get_by_id(int(movie_id)) # type something else instead of None
 
-        if movie and rating:
+        if movie and movie.valid_rating(rating):
             # TODO 3
             # update the movie's rating property and save it to the database
             movie.rating = rating
@@ -153,7 +156,7 @@ class MovieRatings(Handler):
 
             # render confirmation
             t = jinja_env.get_template("rating-confirmation.html")
-            content = t.render(movie = movie.title, rating = rating)
+            content = t.render(movie = movie.title, rating = movie.rating)
             self.response.write(content)
         else:
             self.renderError(400)
