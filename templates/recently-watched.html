@@ -5,7 +5,9 @@
 <h2>Recently Watched Movies</h2>
 
 {% for movie in movies %}
-    <p>{{ movie.owner.username }} watched {{ movie.title }}, and gave it a rating of {{ movie.rating }} stars. </p>
+    <ul>
+        <li>{{ movie.owner.username }} watched {{ movie.title }}, and gave it a rating of {{ movie.rating }} stars. </li>
+    </ul>
 {% endfor %}
 
 {% endblock %}
